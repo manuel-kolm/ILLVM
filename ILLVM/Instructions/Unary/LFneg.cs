@@ -1,25 +1,62 @@
 ﻿using ILLVM.Const;
+using ILLVM.Enums;
 using ILLVM.References;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ILLVM.Instructions.Unary {
+    /// <summary>
+    /// The 'fneg' instruction returns the negation of its operand.
+    /// </summary>
     public class LFneg : ILBaseInstr {
-        public LValueRef Op1;
-        public LValueRef Result;
+        public LBaseRef Op1;
+        public LBaseRef Result;
+        private List<LFastMathFlags> _flags = new List<LFastMathFlags>();
+
+        public List<LFastMathFlags> Flags {
+            get => _flags;
+        }
 
         public LFneg(LValueRef op1, LValueRef result) {
+            if (result.Identifier == null) {
+                throw new Exception("Result value reference must be identifier.");
+            } else if (!result.BaseType.IsFloatingPoint() || !op1.BaseType.IsFloatingPoint()) {
+                throw new Exception("Instruction 'fneg' is only valid on floating point types. Actual type: result: " + result.ParseType() + ", op1: " + op1.ParseType());
+            }
+
+            Op1 = op1;
+            Result = result;
+        }
+
+        public LFneg(LVectorRef op1, LVectorRef result) {
+            if (!result.BaseType.IsFloatingPoint() || !op1.BaseType.IsFloatingPoint()) {
+                throw new Exception("Instruction 'fneg' is only valid on floating point types. Actual type: result: " + result.ParseType() + ", op1: " + op1.ParseType());
+            }
+
             Op1 = op1;
             Result = result;
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(Result.Identifier);
+            StringBuilder sb = new StringBuilder(GetIdentifier(Result));
             sb.Append(" = ").Append(LKeywords.Fneg).Append(" ");
 
-            sb.Append(Op1.ParseType()).Append(" ").Append(Op1.ValueOrIdentifier);
+            foreach (var flag in Flags) {
+                sb.Append(flag.Parse()).Append(" ");
+            }
+
+            sb.Append(Op1.ParseType()).Append(" ").Append(GetIdentifier(Op1));
             return sb.ToString();
+        }
+
+        private string GetIdentifier(LBaseRef reference) {
+            if (reference.IsVector()) {
+                return ((LVectorRef)reference).Identifier;
+            } else if (reference.IsValue()) {
+                return ((LValueRef)reference).ValueOrIdentifier!;
+            }
+            throw new Exception("Unknown reference type. Actual type: " + reference.ParseType());
         }
     }
 }

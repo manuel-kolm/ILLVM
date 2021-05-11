@@ -23,6 +23,40 @@ namespace ILLVM.Types {
         /// </summary>
         /// <returns></returns>
         public override bool IsPrimitiveType() => true;
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsFloatingPoint() {
+            return Type == LPrimitiveTypes.f32 || Type == LPrimitiveTypes.f64;
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsIntegral() {
+            return IsSigned() || IsUnsigned();
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsSigned() {
+            return Type == LPrimitiveTypes.i8 || Type == LPrimitiveTypes.i16 || Type == LPrimitiveTypes.i32
+                || Type == LPrimitiveTypes.i64 || Type == LPrimitiveTypes.i128 || Type == LPrimitiveTypes.i256;
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsUnsigned() {
+            return Type == LPrimitiveTypes.u8 || Type == LPrimitiveTypes.u16 || Type == LPrimitiveTypes.u32
+               || Type == LPrimitiveTypes.u64 || Type == LPrimitiveTypes.u128 || Type == LPrimitiveTypes.u256;
+        }
     }
 
     public enum LPrimitiveTypes {

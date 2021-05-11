@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ILLVM.References
-{
+namespace ILLVM.References {
     /// <summary>
     /// Holds reference to value datatype.
     /// </summary>
-    public class LValueRef : LBaseRef
-    {
+    public class LValueRef : LBaseRef {
         /// <summary>
         /// Can hold information about value or identifier.
         /// Can also be null if this value ref is only a placeholder.
@@ -58,7 +56,7 @@ namespace ILLVM.References
             Type = type;
             ValueOrIdentifier = valueOrIdentifier;
         }
-            
+
         /// <summary>
         /// <inheritdoc/>
         /// </summary>

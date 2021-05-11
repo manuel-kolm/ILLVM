@@ -37,6 +37,17 @@ namespace ILLVM.Const {
         public const string Inbounds = "inbounds";
         public const string Inrange = "inrange";
         public const string Fneg = "fneg";
+        public const string Nuw = "nuw";
+        public const string Nsw = "nsw";
+        public const string Mul = "mul";
+        public const string Fmul = "fmul";
+        public const string Udiv = "udiv";
+        public const string Exact = "exact";
+        public const string Sdiv = "sdiv";
+        public const string Fdiv = "fdiv";
+        public const string Urem = "urem";
+        public const string Srem = "srem";
+        public const string Frem = "frem";
 
 
         public const string Xchg = "xchg";

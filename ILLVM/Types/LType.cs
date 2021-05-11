@@ -27,6 +27,14 @@ namespace ILLVM.Types
 
         public virtual bool IsOpaqueStruct() => false;
 
+        public virtual bool IsFloatingPoint() => false;
+
+        public virtual bool IsIntegral() => false;
+
+        public virtual bool IsSigned() => false;
+
+        public virtual bool IsUnsigned() => false;
+
         public static LType Int8Type() => new LPrimitiveType(LPrimitiveTypes.i8);
 
         public static LType Int16Type() => new LPrimitiveType(LPrimitiveTypes.i16);
@@ -66,8 +74,6 @@ namespace ILLVM.Types
         public static LStruct IdentifiedStructType(string identifier, params LType[] members) => new LStruct(identifier, LStructType.Identified, members);
 
         public static LStruct LiteralStructType(params LType[] members) => new LStruct(null, LStructType.Literal, members);
-
-        //public static LOpaqueStruct OpaqueStructType(string name) => new LOpaqueStruct(name);
 
         /// <summary>
         /// Casts object to child implementation.
