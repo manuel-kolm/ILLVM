@@ -50,5 +50,20 @@ namespace ILLVM.Types {
 
             return sb.ToString();
         }
+
+        public override bool Equals(object obj) {
+            if (obj is LFunctionType other) {
+                return this.ReturnType.Equals(other.ReturnType) && this.Parameters.Equals(other.Parameters);
+            }
+            return false;
+        }
+
+        public static bool operator ==(LFunctionType a, LFunctionType b) {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(LFunctionType a, LFunctionType b) {
+            return !(a == b);
+        }
     }
 }

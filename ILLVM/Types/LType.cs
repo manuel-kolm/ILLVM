@@ -96,5 +96,13 @@ namespace ILLVM.Types
         {
             return Cast<T>() ?? throw new NullReferenceException();
         }
+
+        public static bool operator ==(LType a, LType b) {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(LType a, LType b) {
+            return !(a == b);
+        }
     }
 }

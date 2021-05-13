@@ -70,5 +70,13 @@ namespace ILLVM.References {
         public override string ParseType() {
             return Type.Parse();
         }
+
+        public static bool operator ==(LValueRef a, LValueRef b) {
+            return a.Type == b.Type;
+        }
+
+        public static bool operator !=(LValueRef a, LValueRef b) {
+            return !(a == b);
+        }
     }
 }

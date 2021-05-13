@@ -57,6 +57,21 @@ namespace ILLVM.Types {
             return Type == LPrimitiveTypes.u8 || Type == LPrimitiveTypes.u16 || Type == LPrimitiveTypes.u32
                || Type == LPrimitiveTypes.u64 || Type == LPrimitiveTypes.u128 || Type == LPrimitiveTypes.u256;
         }
+
+        public override bool Equals(object obj) {
+            if (obj is LPrimitiveType other) {
+                return this.Type == other.Type;
+            }
+            return false;
+        }
+
+        public static bool operator ==(LPrimitiveType a, LPrimitiveType b) {
+            return a.Type == b.Type;
+        }
+
+        public static bool operator !=(LPrimitiveType a, LPrimitiveType b) {
+            return !(a == b);
+        }
     }
 
     public enum LPrimitiveTypes {

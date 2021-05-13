@@ -64,7 +64,7 @@ namespace ILLVM.Const {
         public const string Umin = "umin";
         public const string Fadd = "fadd";
         public const string Fsub = "fsub";
-        public const string Ashr = "ahsr";
+        public const string Ashr = "ashr";
 
         public static readonly List<string> AllKeywords = new List<string>()
         {
