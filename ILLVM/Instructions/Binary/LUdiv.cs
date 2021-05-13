@@ -34,7 +34,7 @@ namespace ILLVM.Instructions.Binary {
         }
 
         public LUdiv(LVectorRef result, LVectorRef op1, LVectorRef op2) {
-            if (result.BaseType != op1.BaseType || op1.BaseType != op2.BaseType) {
+            if (result.ParseType() != op1.ParseType() || op1.ParseType() != op2.ParseType()) {
                 throw new Exception($"Types of operands or result are not equal. Result: {result.ParseType()}" +
                     $", Op1: {op1.ParseType()}, Op2: {op2.ParseType()}");
             }
