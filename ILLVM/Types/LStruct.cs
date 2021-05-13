@@ -52,9 +52,7 @@ namespace ILLVM.Types {
 
         public override string Parse() {
             if (StructType == LStructType.Identified) {
-#pragma warning disable CS8603 // Possible null reference return.
-                return Identifier;
-#pragma warning restore CS8603 // Possible null reference return.
+                return Identifier!;
             }
             StringBuilder sb = new StringBuilder();
 

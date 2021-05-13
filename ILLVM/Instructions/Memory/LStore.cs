@@ -36,10 +36,12 @@ namespace ILLVM.Instructions.Memory {
         }
 
         public LStore(LValueRef source, LPointerRef destination) {
+            if (destination.ParseParentType() != source.ParseType()) {
+                throw new Exception($"Destination and source types are not equal. SourceType: {source.ParseType()}, DestinationType: {destination.ParseParentType()}");
+            }
+
             Source = source;
             Destination = destination;
-
-            // Validate // source and destination same type.
         }
 
         public string ParseInstruction() {

@@ -29,6 +29,15 @@ namespace ILLVM.Tests.Instructions.Memory {
         }
 
         [Test]
+        public void SimpleLoadTypesUnequal_Expected_Exception() {
+            LStore store;
+
+            Assert.Throws<Exception>(() =>
+                store = new LStore(_src, new LPointerRef(_dst, "%ptr1"))
+            );
+        }
+
+        [Test]
         public void StoreAlignment_Expected_Ok() {
             LStore store = new LStore(_src, _dst) {
                 Alignment = 5012

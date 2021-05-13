@@ -58,10 +58,10 @@ namespace ILLVM.Instructions.Memory {
             sb.Append(" ");
 
             if (IsWeak) {
-                sb.Append("weak ");
+                sb.Append(LKeywords.Weak).Append(" ");
             }
             if (IsVolatile) {
-                sb.Append("volatile ");
+                sb.Append(LKeywords.Volatile).Append(" ");
             }
 
             sb.Append(PointerRef.ParseType()).Append(" ").Append(PointerRef.Identifier).Append(", ");

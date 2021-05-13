@@ -15,7 +15,7 @@ namespace HelloWorld {
             var module = new LModule("LLVMHelloWorld");
             var func = LFunction.Create("@main", new LValueRef(LType.Int32Type(), ""));
 
-            var arrayRef = new LArrayRef(valueIdentifier, new LValueRef(LType.Int8Type(), ""), 0);
+            var arrayRef = new LArrayRef(valueIdentifier, new LValueRef(LType.Int8Type(), ""), 13);
             // Create char array constant.
             var global = new LGlobal(arrayRef, value) {
                 IsConstant = true
@@ -29,7 +29,7 @@ namespace HelloWorld {
             var result = new LPointerRef(new LValueRef(LType.Int8Type(), ""), "%result");
             var gep = new LGetelementptr(result, global.GetPointerRef());
             gep.Indexes.Add((LType.Int32Type(), 0));
-            gep.Indexes.Add((LType.Int32Type(), 13));
+            gep.Indexes.Add((LType.Int32Type(), 0));
 
             var call = new LCall(fnType, external.FnIdentifier);
 
