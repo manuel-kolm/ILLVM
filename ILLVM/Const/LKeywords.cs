@@ -48,7 +48,8 @@ namespace ILLVM.Const {
         public const string Urem = "urem";
         public const string Srem = "srem";
         public const string Frem = "frem";
-
+        public const string Shl = "shl";
+        public const string Lshr = "lshr";
 
         public const string Xchg = "xchg";
         public const string Add = "add";
@@ -63,6 +64,7 @@ namespace ILLVM.Const {
         public const string Umin = "umin";
         public const string Fadd = "fadd";
         public const string Fsub = "fsub";
+        public const string Ashr = "ahsr";
 
         public static readonly List<string> AllKeywords = new List<string>()
         {
