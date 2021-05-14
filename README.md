@@ -9,8 +9,8 @@ Generating LLVM IR code for:
 
 - __Your own kernel / operating system within C#?__ Definitly!
 - __Creating your own compiler, and maybe also your own language?__ Why not?
-- __Compiling managed code to machine code?__ Yes, of course.
-- __Creating an application which was compiled to native code?__ Yeah, but it would be a lot easier to use a language which can be directly compiled to machine code.
+- __Creating a transpiler which compiles managed code to machine code?__ Yes, of course.
+- __Creating an application which can be compiled to native code?__ Yeah, but it would be a lot easier to use a language which can be directly compiled to machine code.
 
 
 ### Our naming convention sucks?
