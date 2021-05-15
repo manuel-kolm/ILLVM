@@ -50,6 +50,10 @@ namespace ILLVM.Const {
         public const string Frem = "frem";
         public const string Shl = "shl";
         public const string Lshr = "lshr";
+        public const string Icmp = "icmp";
+        public const string Fcmp = "fcmp";
+        public const string False = "false";
+        public const string True = "true";
 
         public const string Xchg = "xchg";
         public const string Add = "add";
@@ -65,6 +69,28 @@ namespace ILLVM.Const {
         public const string Fadd = "fadd";
         public const string Fsub = "fsub";
         public const string Ashr = "ashr";
+
+        public const string Eq = "eq";
+        public const string Ne = "ne";
+        public const string Ugt = "ugt";
+        public const string Uge = "uge";
+        public const string Ule = "ule";
+        public const string Ult = "ult";
+        public const string Sgt = "sgt";
+        public const string Sge = "sge";
+        public const string Slt = "slt";
+        public const string Sle = "sle";
+
+        public const string Oeq = "oeq";
+        public const string Ogt = "ogt";
+        public const string Oge = "oge";
+        public const string Olt = "olt";
+        public const string Ole = "ole";
+        public const string One = "one";
+        public const string Ord = "ord";
+        public const string Ueq = "ueq";
+        public const string Une = "une";
+        public const string Uno = "uno";
 
         public static readonly List<string> AllKeywords = new List<string>()
         {
