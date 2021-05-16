@@ -69,12 +69,6 @@ namespace ILLVM.Types
 
         public static LType VarargType() => new LPrimitiveType(LPrimitiveTypes.vararg);
 
-        public static LStruct PackedStructType(string identifier, params LType[] members) => new LStruct(identifier, LStructType.Packed, members);
-
-        public static LStruct IdentifiedStructType(string identifier, params LType[] members) => new LStruct(identifier, LStructType.Identified, members);
-
-        public static LStruct LiteralStructType(params LType[] members) => new LStruct(null, LStructType.Literal, members);
-
         /// <summary>
         /// Casts object to child implementation.
         /// </summary>

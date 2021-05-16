@@ -13,13 +13,5 @@ namespace ILLVM.Tests.References {
         public void Setup() {
 
         }
-
-        [Test]
-        public void Test1() {
-            LValueRef valueRef = new LValueRef(new LStruct("fooStruct", LStructType.Identified, LType.Int32Type(), LType.Int64Type()), _function.GetValueRefIdentifier());
-            String sd = valueRef.ParseType();
-
-            Console.WriteLine(sd);
-        }
     }
 }

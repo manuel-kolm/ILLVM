@@ -77,14 +77,16 @@ namespace ILLVM.Tests.Instructions.Memory {
         [Test]
         public void AllocaIdentifiedStruct_Expected_Ok() {
             string structIdentifier = "abcTestStruct";
-            LAlloca alloca = new LAlloca(_function, LType.IdentifiedStructType(structIdentifier, LType.Int128Type(), LType.Int16Type()));
+            var @struct = new LIdentifiedStruct(structIdentifier, new LValueRef(LType.Int128Type(), ""), new LValueRef(LType.Int16Type(), ""));
+            LAlloca alloca = new LAlloca(_function, @struct);
             Assert.AreEqual(alloca.ParseInstruction(), $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {structIdentifier}");
             Assert.AreEqual($"{structIdentifier}*", alloca.PointerRef.ParseType());
         }
 
         [Test]
         public void AllocaLiteralStruct_Expected_Ok() {
-            LAlloca alloca = new LAlloca(_function, LType.LiteralStructType(LType.Int128Type(), LType.Int16Type()));
+            var @struct = new LLiteralStruct(new LValueRef(LType.Int128Type(), ""), new LValueRef(LType.Int16Type(), ""));
+            LAlloca alloca = new LAlloca(_function, @struct);
             Assert.AreEqual(alloca.ParseInstruction(), $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {{ i128, i16 }}");
             Assert.AreEqual("{ i128, i16 }*", alloca.PointerRef.ParseType());
         }
