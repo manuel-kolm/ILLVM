@@ -54,6 +54,17 @@ namespace ILLVM.Const {
         public const string Fcmp = "fcmp";
         public const string False = "false";
         public const string True = "true";
+        public const string Trunc = "trunc";
+        public const string Zext = "zext";
+        public const string Sext = "sext";
+        public const string Fptrunc = "fptrunc";
+        public const string To = "to";
+        public const string Fpext = "fpext";
+        public const string Fptoui = "fptoui";
+        public const string Fptosi = "fptosi";
+        public const string Uitofp = "uitofp";
+        public const string Sitofp = "sitofp";
+        public const string Ptrtoint = "ptrtoint";
 
         public const string Xchg = "xchg";
         public const string Add = "add";

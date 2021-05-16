@@ -4,5 +4,5 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ILLVM.Types {
-    public class LStruct : LType { }
+    public abstract class LStruct : LType { }
 }
