@@ -1,5 +1,6 @@
 ﻿using ILLVM.Const;
 using ILLVM.Enums;
+using ILLVM.Misc;
 using ILLVM.References;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace ILLVM.Instructions.Binary {
     /// The 'fdiv' instruction returns the quotient of its two operands.
     /// </summary>
     public class LFdiv : ILBaseInstr {
-        public readonly LValueRef Result;
-        public readonly LValueRef Op1;
-        public readonly LValueRef Op2;
+        public readonly LBaseRef Result;
+        public readonly LBaseRef Op1;
+        public readonly LBaseRef Op2;
         private List<LFastMathFlags> _fastMathFlags = new List<LFastMathFlags>();
 
         public List<LFastMathFlags> FastMathFlags {
@@ -34,22 +35,15 @@ namespace ILLVM.Instructions.Binary {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(Result.Identifier);
+            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Fdiv).Append(" ");
             foreach (LFastMathFlags flag in FastMathFlags) {
                 sb.Append(flag.Parse()).Append(" ");
             }
             sb.Append(Result.ParseType()).Append(" ");
-            sb.Append(Op1.ValueOrIdentifier).Append(", ");
-            sb.Append(Op2.ValueOrIdentifier);
+            sb.Append(LRefHelper.GetValueOrIdentifierOf(Op1)).Append(", ");
+            sb.Append(LRefHelper.GetValueOrIdentifierOf(Op2));
             return sb.ToString();
-        }
-
-        private string GetValueOrIdentifierOf(LBaseRef reference) {
-            if (reference is LValueRef value) {
-                return value.ValueOrIdentifier!;
-            }
-            return ((LVectorRef)reference).ValueOrIdentifier;
         }
     }
 }

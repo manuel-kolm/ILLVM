@@ -1,4 +1,5 @@
 ﻿using ILLVM.Const;
+using ILLVM.Misc;
 using ILLVM.References;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace ILLVM.Instructions.Binary {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(GetValueOrIdentifierOf(Result));
+            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Add).Append(" ");
             if (NoUnsignedWrap) {
                 sb.Append(LKeywords.Nuw).Append(" ");
@@ -63,16 +64,9 @@ namespace ILLVM.Instructions.Binary {
                 sb.Append(LKeywords.Nsw).Append(" ");
             }
             sb.Append(Result.ParseType()).Append(" ");
-            sb.Append(GetValueOrIdentifierOf(Op1)).Append(", ");
-            sb.Append(GetValueOrIdentifierOf(Op2));
+            sb.Append(LRefHelper.GetValueOrIdentifierOf(Op1)).Append(", ");
+            sb.Append(LRefHelper.GetValueOrIdentifierOf(Op2));
             return sb.ToString();
-        }
-
-        private string GetValueOrIdentifierOf(LBaseRef reference) {
-            if (reference is LValueRef value) {
-                return value.ValueOrIdentifier!;
-            }
-            return ((LVectorRef)reference).ValueOrIdentifier;
         }
     }
 }

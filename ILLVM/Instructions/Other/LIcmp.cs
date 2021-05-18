@@ -1,5 +1,6 @@
 ﻿using ILLVM.Const;
 using ILLVM.Enums;
+using ILLVM.Misc;
 using ILLVM.References;
 using System;
 using System.Collections.Generic;
@@ -61,22 +62,13 @@ namespace ILLVM.Instructions.Other {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(GetValueOrIdentifierOf(Result));
+            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Icmp).Append(" ");
             sb.Append(Condition.Parse()).Append(" ");
             sb.Append(Result.ParseType()).Append(" ");
-            sb.Append(GetValueOrIdentifierOf(Op1)).Append(", ");
-            sb.Append(GetValueOrIdentifierOf(Op2));
+            sb.Append(LRefHelper.GetValueOrIdentifierOf(Op1)).Append(", ");
+            sb.Append(LRefHelper.GetValueOrIdentifierOf(Op2));
             return sb.ToString();
-        }
-
-        private string GetValueOrIdentifierOf(LBaseRef reference) {
-            if (reference is LValueRef value) {
-                return value.ValueOrIdentifier!;
-            } else if (reference is LPointerRef pointer) {
-                return pointer.Identifier;
-            }
-            return ((LVectorRef)reference).ValueOrIdentifier;
         }
     }
 }

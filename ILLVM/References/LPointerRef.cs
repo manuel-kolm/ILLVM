@@ -10,16 +10,26 @@ namespace ILLVM.References {
     /// </summary>
     public class LPointerRef : LBaseRef {
         public readonly string Identifier;
-        private readonly LBaseRef _parentRef;
+        public readonly LBaseRef ParentRef;
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public override LType BaseType => _parentRef.BaseType;
+        public override LType BaseType => ParentRef.BaseType;
 
         public LPointerRef(LBaseRef parentRef, string identifier) {
-            _parentRef = parentRef;
+            ParentRef = parentRef;
             Identifier = identifier;
+        }
+
+        public LPointerRef(LBaseRef parentRef) {
+            string identifier = LRefHelper.GetIdentifierOf(parentRef);
+            if (String.IsNullOrEmpty(identifier)) {
+                throw new Exception("Parent references which don't use any identifier are not valid.");
+            }
+
+            Identifier = identifier;
+            ParentRef = parentRef;
         }
 
         /// <summary>
@@ -33,11 +43,11 @@ namespace ILLVM.References {
         /// </summary>
         /// <returns></returns>
         public override string ParseType() {
-            return _parentRef.ParseType() + "*";
+            return ParentRef.ParseType() + "*";
         }
 
         public string ParseParentType() {
-            return _parentRef.ParseType();
+            return ParentRef.ParseType();
         }
     }
 }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ILLVM.Enums {
+    /// <summary>
+    /// Conditions for integral types.
+    /// </summary>
     public enum LICondition {
         /// <summary>equal</summary>
         eq,

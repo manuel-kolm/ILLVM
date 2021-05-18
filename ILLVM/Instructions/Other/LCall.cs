@@ -1,4 +1,6 @@
 using System.Text;
+using ILLVM.Const;
+using ILLVM.Misc;
 using ILLVM.References;
 using ILLVM.Types;
 
@@ -14,14 +16,8 @@ namespace ILLVM.Instructions.Other {
 
         public string ParseInstruction() {
             StringBuilder sb = new StringBuilder();
-
-            if (FnType.ReturnType.IsValue()) {
-                sb.Append(((LValueRef)FnType.ReturnType).Identifier).Append(" ");
-            } else {
-                sb.Append(((LPointerRef)FnType.ReturnType).Identifier).Append(" ");
-            }
-
-            sb.Append(" = call ");
+            sb.Append(LRefHelper.GetIdentifierOf(FnType.ReturnType)).Append(" ");
+            sb.Append(" = ").Append(LKeywords.Call);
             sb.Append(FnType.Parse()).Append(" ");
             sb.Append(FnIdentifier).Append("(");
 
@@ -30,7 +26,7 @@ namespace ILLVM.Instructions.Other {
                     sb.Append(", ");
                 }
                 sb.Append(FnType.Parameters[i].ParseType()).Append(" ");
-                sb.Append(FnType.Parameters[i].IsValue() ? ((LValueRef)FnType.Parameters[i]).ValueOrIdentifier : ((LPointerRef)FnType.Parameters[i]).Identifier);
+                sb.Append(LRefHelper.GetValueOrIdentifierOf(FnType.Parameters[i]));
             }
             sb.Append(")");
 

@@ -1,5 +1,6 @@
 ﻿using ILLVM.Const;
 using ILLVM.Enums;
+using ILLVM.Misc;
 using ILLVM.References;
 using System;
 using System.Collections.Generic;
@@ -39,24 +40,15 @@ namespace ILLVM.Instructions.Unary {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(GetIdentifier(Result));
+            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Fneg).Append(" ");
 
             foreach (var flag in Flags) {
                 sb.Append(flag.Parse()).Append(" ");
             }
 
-            sb.Append(Op1.ParseType()).Append(" ").Append(GetIdentifier(Op1));
+            sb.Append(Op1.ParseType()).Append(" ").Append(LRefHelper.GetValueOrIdentifierOf(Op1));
             return sb.ToString();
-        }
-
-        private string GetIdentifier(LBaseRef reference) {
-            if (reference.IsVector()) {
-                return ((LVectorRef)reference).Identifier;
-            } else if (reference.IsValue()) {
-                return ((LValueRef)reference).ValueOrIdentifier!;
-            }
-            throw new Exception("Unknown reference type. Actual type: " + reference.ParseType());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ILLVM.Misc;
 using ILLVM.Types;
 
 namespace ILLVM.References {
@@ -18,6 +19,17 @@ namespace ILLVM.References {
         public override LType BaseType => ParentRef.BaseType;
 
         public LArrayRef(string identifier, LBaseRef parentRef, int size) {
+            Identifier = identifier;
+            ParentRef = parentRef;
+            Size = size;
+        }
+
+        public LArrayRef(LBaseRef parentRef, int size) {
+            string identifier = LRefHelper.GetIdentifierOf(parentRef);
+            if (String.IsNullOrEmpty(identifier)) {
+                throw new Exception("Parent references which don't use any identifier are not valid.");
+            }
+
             Identifier = identifier;
             ParentRef = parentRef;
             Size = size;

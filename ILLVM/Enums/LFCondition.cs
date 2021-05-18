@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ILLVM.Enums {
+    /// <summary>
+    /// Conditions for floating point types.
+    /// </summary>
     public enum LFCondition {
         /// <summary>no comparison, always returns false</summary>
         @false,
