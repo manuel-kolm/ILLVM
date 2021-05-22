@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using ILLVM.Const;
 using ILLVM.References;
 using ILLVM.Types;
 
@@ -12,14 +13,37 @@ namespace ILLVM.Instructions.Terminator {
     public class LSwitch : ILBaseInstr {
         public readonly LValueRef ValueRef;
         public readonly LLabelType DefaultDestination;
-        public readonly Dictionary<int, LLabelType> JumpTableDestinations;
-        
+        public readonly List<(int, LLabelType)> JumpTableDestinations;
+
+        public LSwitch(LValueRef valueRef, LLabelType defaultDestination) {
+            ValueRef = valueRef;
+            DefaultDestination = defaultDestination;
+            JumpTableDestinations = new List<(int, LLabelType)>();
+        }
+
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder("switch ");
-            sb.Append(ValueRef.Type.Parse()).Append(ValueRef.ValueOrIdentifier);
-            sb.Append(", label ").Append(ValueRef.Identifier);
-            
-            // jump table
+            string typeSpecifier = ValueRef.Type.Parse();
+
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LKeywords.Switch).Append(" ");
+            sb.Append(typeSpecifier).Append(" ").Append(ValueRef.ValueOrIdentifier);
+            sb.Append(", ").Append(LKeywords.Label).Append(" ").Append(DefaultDestination.Identifier);
+            sb.Append(" [ ");
+
+            int index = sb.Length;
+            for (int i = 0; i < JumpTableDestinations.Count; ++i) {
+                if (i != 0) {
+                    sb.AppendLine().Append("\t".PadRight(index));
+                }
+
+                sb.Append(typeSpecifier).Append(" ").Append(JumpTableDestinations[i].Item1).Append(", ");
+                sb.Append(LKeywords.Label).Append(" ").Append(JumpTableDestinations[i].Item2.Identifier);
+            }
+
+            if (JumpTableDestinations.Count > 0) {
+                sb.Append(" ");
+            }
+            sb.Append("]");
 
             return sb.ToString();
         }

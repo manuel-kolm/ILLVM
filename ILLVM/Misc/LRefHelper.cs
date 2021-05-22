@@ -13,7 +13,7 @@ namespace ILLVM.Misc {
         public static string GetValueOrIdentifierOf(LBaseRef reference) {
             if (reference.IsValue()) {
                 LValueRef value = (LValueRef)reference;
-                return value.ValueOrIdentifier!;
+                return value.ValueOrIdentifier;
             } else if (reference.IsPointer()) {
                 LPointerRef pointer = (LPointerRef)reference;
                 return pointer.Identifier;

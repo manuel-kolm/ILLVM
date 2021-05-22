@@ -16,8 +16,4 @@
     <ProjectReference Include="..\ILLVM\ILLVM.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Instructions\Terminator\" />
-  </ItemGroup>
-
 </Project>

@@ -13,7 +13,7 @@ namespace ILLVM.References {
         /// Can also be null if this value ref is only a placeholder.
         /// See <see cref="ILLVM.Instructions.Memory.LLoad"/> for more information.
         /// </summary>
-        public readonly string? ValueOrIdentifier;
+        public readonly string ValueOrIdentifier;
         public readonly LType Type;
 
         /// <summary>
@@ -21,10 +21,10 @@ namespace ILLVM.References {
         /// </summary>
         public string? Identifier {
             get {
-                if (IsPlaceholder || !ValueOrIdentifier.StartsWith("%") && !ValueOrIdentifier.StartsWith("@")) {
-                    return null;
+                if (ValueOrIdentifier!.StartsWith("%") || ValueOrIdentifier!.StartsWith("@")!) {
+                    return ValueOrIdentifier;
                 }
-                return ValueOrIdentifier;
+                return null;
             }
         }
 
@@ -33,7 +33,7 @@ namespace ILLVM.References {
         /// </summary>
         public string? Value {
             get {
-                if (IsPlaceholder || ValueOrIdentifier.StartsWith("%") && ValueOrIdentifier.StartsWith("@")) {
+                if (ValueOrIdentifier!.StartsWith("%") || ValueOrIdentifier!.StartsWith("@")) {
                     return null;
                 }
                 return ValueOrIdentifier;
@@ -41,18 +41,11 @@ namespace ILLVM.References {
         }
 
         /// <summary>
-        /// Returns <code>true</code> if this ValueRef is used as a placeholder.
-        /// See <see cref="ILLVM.Instructions.Memory.LLoad"/> for more information.
-        /// </summary>
-        /// <returns></returns>
-        public bool IsPlaceholder => ValueOrIdentifier == null;
-
-        /// <summary>
         /// <inheritdoc/>
         /// </summary>
         public override LType BaseType => Type;
 
-        public LValueRef(LType type, string? valueOrIdentifier) {
+        public LValueRef(LType type, string valueOrIdentifier) {
             Type = type;
             ValueOrIdentifier = valueOrIdentifier;
         }

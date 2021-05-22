@@ -66,6 +66,7 @@ namespace ILLVM.Const {
         public const string Sitofp = "sitofp";
         public const string Ptrtoint = "ptrtoint";
         public const string Call = "call";
+        public const string Switch = "switch";
 
         public const string Xchg = "xchg";
         public const string Add = "add";

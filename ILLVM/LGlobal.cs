@@ -5,6 +5,7 @@ using ILLVM.Types;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ILLVM.Misc;
 
 namespace ILLVM {
     /// <summary>
@@ -60,7 +61,7 @@ namespace ILLVM {
             TypeRef = typeRef;
             Value = value;
 
-            _pointerRef = new LPointerRef(typeRef, GetIdentifier());
+            _pointerRef = new LPointerRef(typeRef, LRefHelper.GetIdentifierOf(TypeRef));
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace ILLVM {
         }
 
         private string ParseGlobalValuePointerArray() {
-            StringBuilder sb = new StringBuilder(GetIdentifier());
+            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(TypeRef));
             sb.Append(" = ");
 
             if (LinkageType.HasValue) {
@@ -96,16 +97,6 @@ namespace ILLVM {
             sb.Append(Value);
 
             return sb.ToString();
-        }
-
-        private string GetIdentifier() {
-            if (TypeRef.IsValue()) {
-                return ((LValueRef)TypeRef).Identifier!;
-            } else if (TypeRef.IsPointer()) {
-                return ((LPointerRef)TypeRef).Identifier;
-            } else if (TypeRef.IsArray()) {
-                return ((LArrayRef)TypeRef).Identifier;
-            } else throw new NotImplementedException();
         }
     }
 }

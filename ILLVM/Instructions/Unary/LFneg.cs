@@ -21,7 +21,7 @@ namespace ILLVM.Instructions.Unary {
 
         public LFneg(LValueRef op1, LValueRef result) {
             if (result.Identifier == null) {
-                throw new Exception("Result value reference must be identifier.");
+                throw new Exception("Result value reference must be identified.");
             } else if (!result.BaseType.IsFloatingPoint() || !op1.BaseType.IsFloatingPoint()) {
                 throw new Exception("Instruction 'fneg' is only valid on floating point types. Actual type: result: " + result.ParseType() + ", op1: " + op1.ParseType());
             }
