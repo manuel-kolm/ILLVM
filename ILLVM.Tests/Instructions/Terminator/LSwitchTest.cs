@@ -19,7 +19,7 @@ namespace ILLVM.Tests.Instructions.Terminator {
             @switch.JumpTableDestinations.Add((2, new LLabelType("%three")));
             @switch.JumpTableDestinations.Add((3, new LLabelType("%four")));
 
-            Assert.AreEqual("switch i32 %1, label %default [ i32 0, label %one\r\ni32 1, label %two\r\ni32 2, label %three\r\ni32 3, label %four ]",
+            Assert.AreEqual($"switch i32 %1, label %default [ i32 0, label %one{Environment.NewLine}i32 1, label %two{Environment.NewLine}i32 2, label %three{Environment.NewLine}i32 3, label %four ]",
                 LHelper.Trim(@switch.ParseInstruction()));
         }
 

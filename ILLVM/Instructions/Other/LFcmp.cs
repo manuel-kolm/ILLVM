@@ -69,7 +69,8 @@ namespace ILLVM.Instructions.Other {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Fcmp).Append(" ");
             foreach (LFastMathFlags flag in FastMathFlags) {
                 sb.Append(flag.Parse()).Append(" ");

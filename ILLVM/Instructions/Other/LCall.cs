@@ -15,9 +15,9 @@ namespace ILLVM.Instructions.Other {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder("\t");
             sb.Append(LRefHelper.GetIdentifierOf(FnType.ReturnType)).Append(" ");
-            sb.Append(" = ").Append(LKeywords.Call);
+            sb.Append(" = ").Append(LKeywords.Call).Append(" ");
             sb.Append(FnType.Parse()).Append(" ");
             sb.Append(FnIdentifier).Append("(");
 

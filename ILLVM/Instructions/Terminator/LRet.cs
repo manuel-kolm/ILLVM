@@ -1,6 +1,7 @@
 ﻿using ILLVM.Const;
 using ILLVM.References;
 using ILLVM.Types;
+using ILLVM.Misc;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,20 +12,21 @@ namespace ILLVM.Instructions.Terminator {
     /// There are two forms of the ‘ret’ instruction: one that returns a value and then causes control flow, and one that just causes control flow to occur.
     /// </summary>
     public class LRet : ILBaseInstr {
-        public readonly LValueRef RetValue;
+        public readonly LBaseRef RetValue;
 
-        public LRet(LValueRef retValue) {
+        public LRet(LBaseRef retValue) {
             RetValue = retValue;
         }
         
         public string ParseInstruction() {
-            if (RetValue.Type.IsPrimitiveType() &&
-                RetValue.Type.CheckedCast<LPrimitiveType>().Type == LPrimitiveTypes.@void) {
-                return $"ret {LKeywords.Void}";
+            if (RetValue.IsValue() && RetValue.BaseType.IsPrimitiveType() &&
+                RetValue.BaseType.CheckedCast<LPrimitiveType>().Type == LPrimitiveTypes.@void) {
+                return $"\t{LKeywords.Ret} {LKeywords.Void}";
             }
 
-            StringBuilder sb = new StringBuilder("ret ");
-            sb.Append(RetValue.ParseType()).Append(" ").Append(RetValue.ValueOrIdentifier);
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LKeywords.Ret).Append(" ");
+            sb.Append(RetValue.ParseType()).Append(" ").Append(LRefHelper.GetValueOrIdentifierOf(RetValue));
             return sb.ToString();
         }
     }

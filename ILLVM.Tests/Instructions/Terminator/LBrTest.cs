@@ -16,10 +16,10 @@ namespace ILLVM.Tests.Instructions.Terminator
 
         [Test]
         public void ConditionalBr_TypeCheck_i32_Exception() {
-            LBr.LConditionalBr conditionalBr;
+            LConditionalBr conditionalBr;
 
             Assert.Throws<Exception>(() =>
-                conditionalBr = new LBr.LConditionalBr(
+                conditionalBr = new LConditionalBr(
                     new LValueRef(LType.Int32Type(), _function.GetValueRefIdentifier()),
                     _ifTrueLabel, _ifFalseLabel)
             );
@@ -27,10 +27,10 @@ namespace ILLVM.Tests.Instructions.Terminator
         
         [Test]
         public void ConditionalBr_TypeCheck_i8_Success() {
-            LBr.LConditionalBr conditionalBr;
+            LConditionalBr conditionalBr;
 
             Assert.DoesNotThrow(() =>
-                conditionalBr = new LBr.LConditionalBr(
+                conditionalBr = new LConditionalBr(
                     new LValueRef(LType.BoolType(), _function.GetValueRefIdentifier()),
                     _ifTrueLabel, _ifFalseLabel)
             );
@@ -39,21 +39,21 @@ namespace ILLVM.Tests.Instructions.Terminator
         [Test]
         public void ConditionalBr_ParseCheck() {
             LValueRef condition = new LValueRef(LType.BoolType(), _function.GetValueRefIdentifier());
-            LBr.LConditionalBr conditionalBr = new LBr.LConditionalBr(
+            LConditionalBr conditionalBr = new LConditionalBr(
                 condition, _ifTrueLabel, _ifFalseLabel);
 
             Assert.AreEqual(
                 $"{LKeywords.Br} i1 {condition.ValueOrIdentifier}, {LKeywords.Label} {_ifTrueLabel.Identifier}, {LKeywords.Label} {_ifFalseLabel.Identifier}",
-                conditionalBr.ParseInstruction());
+                LHelper.Trim(conditionalBr.ParseInstruction()));
         }
         
         [Test]
         public void UnconditionalBr_ParseCheck() {
-            LBr.LUnconditionalBr unconditionalBr = new LBr.LUnconditionalBr(_ifTrueLabel);
+            LUnconditionalBr unconditionalBr = new LUnconditionalBr(_ifTrueLabel);
 
             Assert.AreEqual(
                 $"{LKeywords.Br} {LKeywords.Label} {_ifTrueLabel.Identifier}",
-                unconditionalBr.ParseInstruction());
+                LHelper.Trim(unconditionalBr.ParseInstruction()));
         }
     }
 }

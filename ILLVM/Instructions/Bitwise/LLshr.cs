@@ -49,8 +49,8 @@ namespace ILLVM.Instructions.Bitwise {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
-            sb.Append(" = ").Append(LKeywords.Lshr).Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result)).Append(" = ").Append(LKeywords.Lshr).Append(" ");
             if (Exact) {
                 sb.Append(LKeywords.Exact).Append(" ");
             }

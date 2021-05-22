@@ -1,7 +1,5 @@
-namespace ILLVM.Instructions
-{
-    public interface ILBaseInstr
-    {
+namespace ILLVM.Instructions {
+    public interface ILBaseInstr {
         public string ParseInstruction();
     }
 }

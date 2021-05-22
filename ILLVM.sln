@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILLVM", "ILLVM\ILLVM.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILLVM.Tests", "ILLVM.Tests\ILLVM.Tests.csproj", "{0B5A7234-1AC6-4B05-8C33-4AAF9369C4BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "Samples\HelloWorld\HelloWorld.csproj", "{E9A2CBD2-F9F6-48AC-AEBB-347375421D30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld", "Samples\HelloWorld\HelloWorld.csproj", "{E9A2CBD2-F9F6-48AC-AEBB-347375421D30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCalculator", "Samples\SimpleCalculator\SimpleCalculator.csproj", "{116B0B3E-4E66-4D3C-982B-35BF3BF5AE4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{E9A2CBD2-F9F6-48AC-AEBB-347375421D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9A2CBD2-F9F6-48AC-AEBB-347375421D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9A2CBD2-F9F6-48AC-AEBB-347375421D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{116B0B3E-4E66-4D3C-982B-35BF3BF5AE4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{116B0B3E-4E66-4D3C-982B-35BF3BF5AE4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{116B0B3E-4E66-4D3C-982B-35BF3BF5AE4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{116B0B3E-4E66-4D3C-982B-35BF3BF5AE4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

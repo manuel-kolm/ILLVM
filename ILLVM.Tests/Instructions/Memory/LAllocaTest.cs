@@ -24,7 +24,8 @@ namespace ILLVM.Tests.Instructions.Memory {
         [Test]
         public void SimpleAllocaParse_Expected_True() {
             LAlloca alloca = new LAlloca(_function, LType.Int32Type());
-            Assert.AreEqual(alloca.ParseInstruction(), $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}");
+            Assert.AreEqual($"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}",
+                LHelper.Trim(alloca.ParseInstruction()));
         }
 
         [Test]
@@ -32,8 +33,9 @@ namespace ILLVM.Tests.Instructions.Memory {
             LAlloca alloca = new LAlloca(_function, LType.Int32Type()) {
                 NumOfElements = 5
             };
-            Assert.AreEqual(alloca.ParseInstruction(),
-                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LType.Int32Type().Parse()} 5");
+            Assert.AreEqual(
+                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LType.Int32Type().Parse()} 5",
+                LHelper.Trim(alloca.ParseInstruction()));
         }
 
         [Test]
@@ -41,8 +43,9 @@ namespace ILLVM.Tests.Instructions.Memory {
             LAlloca alloca = new LAlloca(_function, LType.Int32Type()) {
                 Alignment = 1024
             };
-            Assert.AreEqual(alloca.ParseInstruction(),
-                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LKeywords.Align} 1024");
+            Assert.AreEqual(
+                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LKeywords.Align} 1024",
+                LHelper.Trim(alloca.ParseInstruction()));
         }
 
         [Test]
@@ -50,8 +53,9 @@ namespace ILLVM.Tests.Instructions.Memory {
             LAlloca alloca = new LAlloca(_function, LType.Int32Type()) {
                 Addrspace = 4
             };
-            Assert.AreEqual(alloca.ParseInstruction(),
-                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LKeywords.Addrspace}(4)");
+            Assert.AreEqual(
+                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LKeywords.Addrspace}(4)",
+                LHelper.Trim(alloca.ParseInstruction()));
         }
 
         [Test]
@@ -61,8 +65,9 @@ namespace ILLVM.Tests.Instructions.Memory {
                 Alignment = 1024,
                 Addrspace = 4
             };
-            Assert.AreEqual(alloca.ParseInstruction(),
-                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LType.Int32Type().Parse()} 5, {LKeywords.Align} 1024, {LKeywords.Addrspace}(4)");
+            Assert.AreEqual(
+                $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}, {LType.Int32Type().Parse()} 5, {LKeywords.Align} 1024, {LKeywords.Addrspace}(4)",
+                LHelper.Trim(alloca.ParseInstruction()));
         }
 
         [Test]
@@ -70,8 +75,8 @@ namespace ILLVM.Tests.Instructions.Memory {
             LPointerRef singlePointer = new LPointerRef(new LValueRef(LType.Int32Type(), ""), _function.GetPointerRefIdentifier());
             LPointerRef doublePointer = new LPointerRef(singlePointer, _function.GetPointerRefIdentifier());
             LAlloca alloca = new LAlloca(_function, doublePointer);
-            Assert.AreEqual(alloca.ParseInstruction(), $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}**");
-            Assert.AreEqual($"{LType.Int32Type().Parse()}***", alloca.PointerRef.ParseType());
+            Assert.AreEqual($"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {LType.Int32Type().Parse()}**", LHelper.Trim(alloca.ParseInstruction()));
+            Assert.AreEqual($"{LType.Int32Type().Parse()}***", LHelper.Trim(alloca.PointerRef.ParseType()));
         }
 
         [Test]
@@ -79,16 +84,16 @@ namespace ILLVM.Tests.Instructions.Memory {
             string structIdentifier = "abcTestStruct";
             var @struct = new LIdentifiedStruct(structIdentifier, new LValueRef(LType.Int128Type(), ""), new LValueRef(LType.Int16Type(), ""));
             LAlloca alloca = new LAlloca(_function, @struct);
-            Assert.AreEqual(alloca.ParseInstruction(), $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {structIdentifier}");
-            Assert.AreEqual($"{structIdentifier}*", alloca.PointerRef.ParseType());
+            Assert.AreEqual($"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {structIdentifier}", LHelper.Trim(alloca.ParseInstruction()));
+            Assert.AreEqual($"{structIdentifier}*", LHelper.Trim(alloca.PointerRef.ParseType()));
         }
 
         [Test]
         public void AllocaLiteralStruct_Expected_Ok() {
             var @struct = new LLiteralStruct(new LValueRef(LType.Int128Type(), ""), new LValueRef(LType.Int16Type(), ""));
             LAlloca alloca = new LAlloca(_function, @struct);
-            Assert.AreEqual(alloca.ParseInstruction(), $"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {{ i128, i16 }}");
-            Assert.AreEqual("{ i128, i16 }*", alloca.PointerRef.ParseType());
+            Assert.AreEqual($"{alloca.PointerRef.Identifier} = {LKeywords.Alloca} {{ i128, i16 }}", LHelper.Trim(alloca.ParseInstruction()));
+            Assert.AreEqual("{ i128, i16 }*", LHelper.Trim(alloca.PointerRef.ParseType()));
         }
     }
 }

@@ -50,7 +50,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
         public void SimpleAnd_ParseCheck() {
             LAnd and = new LAnd(_valueResult, _valueOp1, _valueOp2);
             Assert.AreEqual($"{_valueResult.Identifier} = and {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                and.ParseInstruction());
+                LHelper.Trim(and.ParseInstruction()));
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
             LValueRef op2 = new LValueRef(LType.Int32Type(), "12");
             LAnd and = new LAnd(_valueResult, _valueOp1, op2);
             Assert.AreEqual($"{_valueResult.Identifier} = and {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {op2.ValueOrIdentifier}",
-                and.ParseInstruction());
+                LHelper.Trim(and.ParseInstruction()));
         }
     }
 }

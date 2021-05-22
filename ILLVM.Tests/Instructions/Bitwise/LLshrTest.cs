@@ -50,7 +50,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
         public void SimpleLshr_ParseCheck() {
             LLshr lshr = new LLshr(_valueResult, _valueOp1, _valueOp2);
             Assert.AreEqual($"{_valueResult.Identifier} = lshr {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                lshr.ParseInstruction());
+                LHelper.Trim(lshr.ParseInstruction()));
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
             LValueRef op2 = new LValueRef(LType.Int32Type(), "12");
             LLshr lshr = new LLshr(_valueResult, _valueOp1, op2);
             Assert.AreEqual($"{_valueResult.Identifier} = lshr {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {op2.ValueOrIdentifier}",
-                lshr.ParseInstruction());
+                LHelper.Trim(lshr.ParseInstruction()));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
                 Exact = true
             };
             Assert.AreEqual($"{_valueResult.Identifier} = lshr exact {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                lshr.ParseInstruction());
+                LHelper.Trim(lshr.ParseInstruction()));
         }
     }
 }

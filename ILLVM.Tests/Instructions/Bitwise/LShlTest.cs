@@ -48,7 +48,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
         public void SimpleLshr_ParseCheck() {
             LShl shl = new LShl(_valueResult, _valueOp1, _valueOp2);
             Assert.AreEqual($"{_valueResult.Identifier} = shl {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                shl.ParseInstruction());
+                LHelper.Trim(shl.ParseInstruction()));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
             LValueRef op2 = new LValueRef(LType.Int32Type(), "12");
             LShl shl = new LShl(_valueResult, _valueOp1, op2);
             Assert.AreEqual($"{_valueResult.Identifier} = shl {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {op2.ValueOrIdentifier}",
-                shl.ParseInstruction());
+                LHelper.Trim(shl.ParseInstruction()));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
                 NoUnsignedWrap = true,
             };
             Assert.AreEqual($"{_valueResult.Identifier} = shl nuw {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                shl.ParseInstruction());
+                LHelper.Trim(shl.ParseInstruction()));
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
                 NoSignedWrap = true,
             };
             Assert.AreEqual($"{_valueResult.Identifier} = shl nsw {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                shl.ParseInstruction());
+                LHelper.Trim(shl.ParseInstruction()));
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
                 NoSignedWrap = true,
             };
             Assert.AreEqual($"{_valueResult.Identifier} = shl nuw nsw {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                shl.ParseInstruction());
+                LHelper.Trim(shl.ParseInstruction()));
         }
     }
 }

@@ -40,7 +40,8 @@ namespace ILLVM.Instructions.Unary {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Fneg).Append(" ");
 
             foreach (var flag in Flags) {

@@ -44,7 +44,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{LKeywords.Store} {_src.ParseType()} {_src.ValueOrIdentifier}, {_dst.ParseType()} {_dst.Identifier}, {LKeywords.Align} 5012",
-                store.ParseInstruction());
+                LHelper.Trim(store.ParseInstruction()));
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{LKeywords.Store} {LKeywords.Volatile} {_src.ParseType()} {_src.ValueOrIdentifier}, {_dst.ParseType()} {_dst.Identifier}",
-                store.ParseInstruction());
+                LHelper.Trim(store.ParseInstruction()));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{LKeywords.Store} {LKeywords.Atomic} {_src.ParseType()} {_src.ValueOrIdentifier}, {_dst.ParseType()} {_dst.Identifier}",
-                store.ParseInstruction());
+                LHelper.Trim(store.ParseInstruction()));
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{LKeywords.Store} {LKeywords.Atomic} {LKeywords.Volatile} {_src.ParseType()} {_src.ValueOrIdentifier}, {_dst.ParseType()} {_dst.Identifier}",
-                store.ParseInstruction());
+                LHelper.Trim(store.ParseInstruction()));
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{LKeywords.Store} {LKeywords.Atomic} {LKeywords.Volatile} {_src.ParseType()} {_src.ValueOrIdentifier}, {_dst.ParseType()} {_dst.Identifier}, {LKeywords.Align} 5012",
-                store.ParseInstruction());
+                LHelper.Trim(store.ParseInstruction()));
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"store atomic volatile i32 {_src.ValueOrIdentifier}, i32* {_dst.Identifier}, align 5012",
-                store.ParseInstruction());
+                LHelper.Trim(store.ParseInstruction()));
         }
     }
 }

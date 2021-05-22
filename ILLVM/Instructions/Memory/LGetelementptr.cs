@@ -31,7 +31,8 @@ namespace ILLVM.Instructions.Memory {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(ResultRef.Identifier);
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(ResultRef.Identifier);
             sb.Append(" = ").Append(LKeywords.Getelementptr).Append(" ");
             if (Inbounds.HasValue && Inbounds.Value) {
                 sb.Append(LKeywords.Inbounds).Append(" ");

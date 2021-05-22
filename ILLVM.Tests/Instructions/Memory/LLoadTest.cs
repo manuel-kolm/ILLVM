@@ -32,7 +32,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             LLoad load = new LLoad(_function, _alloca.PointerRef);
             Assert.AreEqual(
                 $"{load.ValueRef.Identifier} = {LKeywords.Load} {LType.Int32Type().Parse()}, {load.PointerRef.ParseType()} {load.PointerRef.Identifier}",
-                load.ParseInstruction());
+                LHelper.Trim(load.ParseInstruction()));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{load.ValueRef.Identifier} = {LKeywords.Load} {LType.Int32Type().Parse()}, {load.PointerRef.ParseType()} {load.PointerRef.Identifier}, {LKeywords.Align} {2048}",
-                load.ParseInstruction());
+                LHelper.Trim(load.ParseInstruction()));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{load.ValueRef.Identifier} = {LKeywords.Load} {LKeywords.Volatile} {LType.Int32Type().Parse()}, {load.PointerRef.ParseType()} {load.PointerRef.Identifier}",
-                load.ParseInstruction());
+                LHelper.Trim(load.ParseInstruction()));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{load.ValueRef.Identifier} = {LKeywords.Load} {LKeywords.Atomic} {LKeywords.Volatile} {LType.Int32Type().Parse()}, {load.PointerRef.ParseType()} {load.PointerRef.Identifier}",
-                load.ParseInstruction());
+                LHelper.Trim(load.ParseInstruction()));
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace ILLVM.Tests.Instructions.Memory {
             };
             Assert.AreEqual(
                 $"{load.ValueRef.Identifier} = {LKeywords.Load} {LKeywords.Atomic} {LKeywords.Volatile} {LType.Int32Type().Parse()}, {load.PointerRef.ParseType()} {load.PointerRef.Identifier}, {LKeywords.Align} {5012}",
-                load.ParseInstruction());
+                LHelper.Trim(load.ParseInstruction()));
         }
     }
 }

@@ -42,7 +42,8 @@ namespace ILLVM.Tests.Instructions.Unary {
         [Test]
         public void Fneg_ParseCheck() {
             LFneg fneg = new LFneg(_op1, _result);
-            Assert.AreEqual($"{_result.Identifier} = fneg {_result.ParseType()} {_op1.ValueOrIdentifier}", fneg.ParseInstruction());
+            Assert.AreEqual($"{_result.Identifier} = fneg {_result.ParseType()} {_op1.ValueOrIdentifier}",
+                LHelper.Trim(fneg.ParseInstruction()));
         }
 
         [Test]
@@ -50,7 +51,7 @@ namespace ILLVM.Tests.Instructions.Unary {
             LFneg fneg = new LFneg(_op1, _result);
             fneg.Flags.Add(LFastMathFlags.fast);
             Assert.AreEqual($"{_result.Identifier} = fneg {LFastMathFlags.fast.Parse()} {_result.ParseType()} {_op1.ValueOrIdentifier}",
-                fneg.ParseInstruction());
+                LHelper.Trim(fneg.ParseInstruction()));
         }
     }
 }

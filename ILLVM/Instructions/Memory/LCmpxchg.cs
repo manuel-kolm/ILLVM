@@ -47,15 +47,11 @@ namespace ILLVM.Instructions.Memory {
             PointerRef = pointerRef;
             CmpValueRef = cmpValueRef;
             NewValueRef = newValueRef;
-
-            // add validation
-
-            //YieldValueRef = new LValueRef(LType.LiteralStructType(LType.Int32Type(), LType.Int8Type()), function.GetValueRefIdentifier());
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LKeywords.Cmpxchg);
-            sb.Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LKeywords.Cmpxchg).Append(" ");
 
             if (IsWeak) {
                 sb.Append(LKeywords.Weak).Append(" ");

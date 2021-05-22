@@ -62,7 +62,8 @@ namespace ILLVM.Instructions.Other {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result));
             sb.Append(" = ").Append(LKeywords.Icmp).Append(" ");
             sb.Append(Condition.Parse()).Append(" ");
             sb.Append(Result.ParseType()).Append(" ");

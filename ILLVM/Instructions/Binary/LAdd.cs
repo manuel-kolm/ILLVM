@@ -55,8 +55,8 @@ namespace ILLVM.Instructions.Binary {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
-            sb.Append(" = ").Append(LKeywords.Add).Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result)).Append(" = ").Append(LKeywords.Add).Append(" ");
             if (NoUnsignedWrap) {
                 sb.Append(LKeywords.Nuw).Append(" ");
             }

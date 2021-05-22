@@ -48,7 +48,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
         public void SimpleOr_ParseCheck() {
             LOr or = new LOr(_valueResult, _valueOp1, _valueOp2);
             Assert.AreEqual($"{_valueResult.Identifier} = or {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {_valueOp2.ValueOrIdentifier}",
-                or.ParseInstruction());
+                LHelper.Trim(or.ParseInstruction()));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace ILLVM.Tests.Instructions.Bitwise {
             LValueRef op2 = new LValueRef(LType.Int32Type(), "12");
             LOr or = new LOr(_valueResult, _valueOp1, op2);
             Assert.AreEqual($"{_valueResult.Identifier} = or {_valueResult.ParseType()} {_valueOp1.ValueOrIdentifier}, {op2.ValueOrIdentifier}",
-                or.ParseInstruction());
+                LHelper.Trim(or.ParseInstruction()));
         }
     }
 }

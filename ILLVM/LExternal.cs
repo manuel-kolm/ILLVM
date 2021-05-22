@@ -3,10 +3,6 @@ using System.Text;
 using ILLVM.References;
 using ILLVM.Types;
 
-/*
- * TODO: Add functionality to retrieve LFunctionType from this LExternal.
- */
-
 namespace ILLVM {
     /// <summary>
     /// Represents external function declaration.

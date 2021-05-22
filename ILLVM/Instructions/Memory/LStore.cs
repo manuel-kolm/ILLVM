@@ -45,7 +45,7 @@ namespace ILLVM.Instructions.Memory {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LKeywords.Store).Append(" ");
+            StringBuilder sb = new StringBuilder("\t").Append(LKeywords.Store).Append(" ");
 
             if (IsVolatile && !IsAtomic) {
                 sb.Append(LKeywords.Volatile).Append(" ");

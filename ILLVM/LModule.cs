@@ -1,6 +1,7 @@
 ﻿using ILLVM.Const;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILLVM {
@@ -68,6 +69,16 @@ namespace ILLVM {
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Parses module and writes to file path.
+        /// </summary>
+        /// <param name="file"></param>
+        public void WriteToFile(string file) {
+            using (StreamWriter writer = new StreamWriter(file.ToString())) {
+                writer.Write(Parse());
+            }
         }
     }
 }

@@ -43,8 +43,8 @@ namespace ILLVM.Instructions.Bitwise {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
-            sb.Append(" = ").Append(LKeywords.Or).Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result)).Append(" = ").Append(LKeywords.Or).Append(" ");
             sb.Append(Result.ParseType()).Append(" ");
             sb.Append(LRefHelper.GetValueOrIdentifierOf(Op1)).Append(", ");
             sb.Append(LRefHelper.GetValueOrIdentifierOf(Op2));

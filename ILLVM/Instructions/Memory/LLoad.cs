@@ -42,10 +42,10 @@ namespace ILLVM.Instructions.Memory {
         public LValueRef GetValue() {
             return ValueRef;
         }
-        
+
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(ValueRef.Identifier);
-            sb.Append(" = ").Append(LKeywords.Load).Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(ValueRef.Identifier).Append(" = ").Append(LKeywords.Load).Append(" ");
 
             if (IsVolatile && !IsAtomic) {
                 sb.Append(LKeywords.Volatile).Append(" ");

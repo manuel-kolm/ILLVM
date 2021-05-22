@@ -27,7 +27,7 @@ namespace ILLVM.Instructions.Memory {
                     throw new System.Exception("Alignment may not be greater than 1 << 29. Actual alignment: " + value);
                 }
                 _alignment = value;
-             }
+            }
         }
 
         public int? Addrspace {
@@ -63,7 +63,8 @@ namespace ILLVM.Instructions.Memory {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(PointerRef.Identifier).Append(" = ").Append(LKeywords.Alloca).Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(PointerRef.Identifier).Append(" = ").Append(LKeywords.Alloca).Append(" ");
             sb.Append(PointerRef.ParseParentType());
             if (NumOfElements.HasValue) {
                 sb.Append(", ").Append(PointerRef.ParseParentType()).Append(" ").Append(NumOfElements.Value);

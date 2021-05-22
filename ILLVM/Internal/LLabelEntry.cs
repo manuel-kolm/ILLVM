@@ -26,7 +26,7 @@ namespace ILLVM.Internal {
 
             foreach (ILBaseInstr instruction in Instructions)
             {
-                sb.Append("\t").Append(instruction.ParseInstruction()).AppendLine();
+                sb.Append(instruction.ParseInstruction()).AppendLine();
             }
 
             return sb.ToString();

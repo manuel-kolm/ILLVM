@@ -36,8 +36,8 @@ namespace ILLVM.Instructions.Conversion {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
-            sb.Append(" = ").Append(LKeywords.Uitofp);
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result)).Append(" = ").Append(LKeywords.Uitofp);
             sb.Append(Value.ParseType()).Append(" ").Append(LRefHelper.GetValueOrIdentifierOf(Value));
             sb.Append(" ").Append(LKeywords.To).Append(" ").Append(Result.ParseType());
             return sb.ToString();

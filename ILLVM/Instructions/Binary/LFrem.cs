@@ -35,8 +35,8 @@ namespace ILLVM.Instructions.Binary {
         }
 
         public string ParseInstruction() {
-            StringBuilder sb = new StringBuilder(LRefHelper.GetIdentifierOf(Result));
-            sb.Append(" = ").Append(LKeywords.Frem).Append(" ");
+            StringBuilder sb = new StringBuilder("\t");
+            sb.Append(LRefHelper.GetIdentifierOf(Result)).Append(" = ").Append(LKeywords.Frem).Append(" ");
             foreach (LFastMathFlags flag in FastMathFlags) {
                 sb.Append(flag.Parse()).Append(" ");
             }
