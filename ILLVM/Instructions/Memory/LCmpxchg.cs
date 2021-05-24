@@ -1,4 +1,5 @@
 ﻿using ILLVM.Const;
+using ILLVM.Enums;
 using ILLVM.References;
 using ILLVM.Types;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace ILLVM.Instructions.Memory {
     /// <summary>
-    /// The ‘cmpxchg’ instruction is used to atomically modify memory.
+    /// The 'cmpxchg' instruction is used to atomically modify memory.
     /// It loads a value in memory and compares it to a given value.
     /// If they are equal, it tries to store a new value into the memory.
     /// </summary>
@@ -15,24 +16,16 @@ namespace ILLVM.Instructions.Memory {
         /// <summary>
         /// identified struct type: { ty, i1 }
         /// </summary>
-        public readonly LValueRef YieldValueRef;
+        public readonly LValueRef YieldRef;
         public readonly LPointerRef PointerRef;
         public readonly LValueRef CmpValueRef;
         public readonly LValueRef NewValueRef;
-        private bool _isWeak;
-        private bool _isVolatile;
+        public readonly LOrdering SucessOrdering;
+        public readonly LOrdering FailureOrdering;
         private int? _alignment;
 
-        public bool IsWeak {
-            get => _isWeak;
-            set => _isWeak = value;
-        }
-
-        public bool IsVolatile {
-            get => _isVolatile;
-            set => _isVolatile = value;
-        }
-
+        public bool IsWeak { get; set; }
+        public bool IsVolatile { get; set; }
         public int? Alignment {
             get => _alignment;
             set {
@@ -43,15 +36,18 @@ namespace ILLVM.Instructions.Memory {
             }
         }
 
-        public LCmpxchg(LFunction function, LPointerRef pointerRef, LValueRef cmpValueRef, LValueRef newValueRef) {
+        public LCmpxchg(LValueRef yieldRef, LPointerRef pointerRef, LValueRef cmpValueRef, LValueRef newValueRef, LOrdering successOrdering, LOrdering failureOrdering) {
+            YieldRef = yieldRef;
             PointerRef = pointerRef;
             CmpValueRef = cmpValueRef;
             NewValueRef = newValueRef;
+            SucessOrdering = successOrdering;
+            FailureOrdering = failureOrdering;
         }
 
         public string ParseInstruction() {
             StringBuilder sb = new StringBuilder("\t");
-            sb.Append(LKeywords.Cmpxchg).Append(" ");
+            sb.Append(YieldRef.Identifier).Append(" = ").Append(LKeywords.Cmpxchg).Append(" ");
 
             if (IsWeak) {
                 sb.Append(LKeywords.Weak).Append(" ");

@@ -67,6 +67,14 @@ namespace ILLVM.Const {
         public const string Ptrtoint = "ptrtoint";
         public const string Call = "call";
         public const string Switch = "switch";
+        public const string Atomicrmw = "atomicrmw";
+        public const string Unordered = "unordered";
+        public const string Monotonic = "monotonic";
+        public const string Acquire = "acquire";
+        public const string Release = "release";
+        public const string Acq_rel = "acq_rel";
+        public const string Seq_cst = "seq_cst";
+
 
         public const string Xchg = "xchg";
         public const string Add = "add";
